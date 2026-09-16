@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
 <title>المحتوى</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 <script id="SITE_DATA_BLOCK">
 window.SITE_DATA = {
   "version": 3,
-  "updatedAt": "2026-09-16T08:48:05.026Z",
+  "updatedAt": "2026-09-16T09:14:16.835Z",
   "site": {
     "name": "محرك مصران",
     "brand": "محرك مصران",
@@ -138,7 +138,7 @@ function playCurtain(then){
   if(s.logoUrl) lw.innerHTML='<img class="page-curtain-logo" src="'+esc(driveView(s.logoUrl))+'" alt="">';
   else lw.innerHTML='<i class="fas fa-ankh" style="font-size:2.2rem;color:#e8c547;margin-bottom:.75rem;display:block"></i>';
   el.classList.remove('out'); el.classList.add('on');
-  setTimeout(function(){ if(then) then(); setTimeout(function(){ el.classList.add('out'); setTimeout(function(){ el.classList.remove('on','out'); },650); },250); },650);
+  setTimeout(function(){ if(then) then(); setTimeout(function(){ el.classList.add('out'); setTimeout(function(){ el.classList.remove('on','out'); },380); },120); },380);
 }
 function navigateTo(href){
   var ind=document.getElementById('navIndicator');
@@ -303,7 +303,7 @@ function renderFloatButtons(){
   if(fb.phone){ var a=document.createElement('a'); a.className='float-btn phone'; a.href='tel:'+String(fb.phone).replace(/\s/g,''); a.title='اتصال'; a.innerHTML='<i class="fas fa-phone-alt"></i>'; bl.appendChild(a); }
   if(fb.youtube){ var a=document.createElement('a'); a.className='float-btn yt'; a.href=fb.youtube; a.target='_blank'; a.rel='noopener'; a.innerHTML='<i class="fab fa-youtube"></i>'; bl.appendChild(a); }
   if(fb.facebook){ var a=document.createElement('a'); a.className='float-btn fb'; a.href=fb.facebook; a.target='_blank'; a.rel='noopener'; a.innerHTML='<i class="fab fa-facebook-f"></i>'; bl.appendChild(a); }
-  if(fb.intro){ var a=document.createElement('a'); a.className='float-btn'; a.href=fb.intro; a.target='_blank'; a.rel='noopener'; a.title='فيديو تعريفي'; a.innerHTML='<i class="fas fa-play"></i>'; bl.appendChild(a); }
+  if(fb.intro){ var wrap=document.createElement('div'); wrap.className='float-intro-wrap'; var a=document.createElement('a'); a.className='float-btn'; a.href=fb.intro; a.target='_blank'; a.rel='noopener'; a.title='الفيديو التعريفي للموقع'; a.innerHTML='<i class="fas fa-play"></i>'; var lab=document.createElement('span'); lab.className='float-intro-label'; lab.textContent='الفيديو التعريفي للموقع'; wrap.appendChild(a); wrap.appendChild(lab); bl.appendChild(wrap); }
   document.body.appendChild(bl);
   var customs=fb.custom||[];
   if(customs.length){
@@ -344,20 +344,32 @@ function applyBrand(){
 }
 function markNav(){
   var path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  if(!path || path==='/') path='index.html';
   document.querySelectorAll('.nav-pill-link').forEach(function(a){
     var h=(a.getAttribute('href')||'').split('?')[0].toLowerCase();
-    a.classList.toggle('is-active', h===path || (path===''&&h==='index.html'));
+    a.classList.toggle('is-active', h===path || ((path===''||path==='index.html')&&h==='index.html'));
   });
-  var ind=document.getElementById('navIndicator'),nav=document.getElementById('mainNav');
+  var ind=document.getElementById('navIndicator'), nav=document.getElementById('mainNav');
+  if(!ind||!nav) return;
+  // موبايل: اخفي المؤشر الذهبي المتحرك
+  if(window.matchMedia('(max-width:900px)').matches){
+    ind.style.width='0'; ind.style.opacity='0'; return;
+  }
   var a=document.querySelector('.nav-pill-link.is-active');
-  if(!ind||!nav||!a){ if(ind) ind.style.width='0'; return; }
-  if(window.matchMedia('(max-width:900px)').matches){ ind.style.width='0'; return; }
-  var nr=nav.getBoundingClientRect(), r=a.getBoundingClientRect();
-  var pad=0;
-  ind.style.top='6px';
-  ind.style.height=(nr.height-12)+'px';
-  ind.style.left=Math.max(0,(r.left-nr.left-pad))+'px';
-  ind.style.width=Math.max(0,r.width+pad*2)+'px';
+  if(!a){ ind.style.width='0'; ind.style.opacity='0'; return; }
+  // حساب دقيق: الخلفية الذهبية تلف الزر + الأيقونة بالكامل
+  var nr=nav.getBoundingClientRect();
+  var r=a.getBoundingClientRect();
+  var padX=2; // هامش خفيف
+  var top=Math.max(4, r.top-nr.top);
+  var height=Math.max(28, r.height);
+  var left=Math.max(0, r.left-nr.left-padX);
+  var width=Math.max(0, r.width+padX*2);
+  ind.style.opacity='1';
+  ind.style.top=top+'px';
+  ind.style.height=height+'px';
+  ind.style.left=left+'px';
+  ind.style.width=width+'px';
 }
 function wireNav(){
   document.querySelectorAll('.nav-pill-link, .nav-pill-brand, a.btn-hero, a.btn-primary-custom').forEach(function(a){
@@ -371,11 +383,94 @@ function wireNav(){
     });
   });
 }
+
+function getIntroUrl(){
+  try{ var s=site(); return ((s.floatButtons||{}).intro||'').trim(); }catch(e){ return ''; }
+}
+function buildConsentHTML(readonly){
+  var intro = getIntroUrl();
+  var videoBlock = '';
+  if(intro){
+    videoBlock = '<div class="consent-video-row"><a class="btn-watch" href="'+esc(intro)+'" target="_blank" rel="noopener"><i class="fas fa-play"></i> شاهد</a><span class="small text-muted">الفيديو التعريفي للموقع</span></div>';
+  } else {
+    videoBlock = '<div class="small text-muted mb-2">لا يوجد فيديو تعريفي محدد حالياً.</div>';
+  }
+  var dis = readonly ? ' checked disabled' : '';
+  var labClass = readonly ? ' class="readonly"' : '';
+  return '<div class="consent-section"><h4>سياسة الخصوصية</h4><div class="consent-scroll"><p>نحن نحترم خصوصيتك. عند استخدامك لهذا الموقع، قد يتم تخزين معرّف جهاز محلي (Device ID) على متصفحك لغرض تفعيل المنتجات الرقمية التي تشتريها أو تحصل عليها مجاناً، ولتحسين تجربة الاستخدام.</p><p>لا نجمع بيانات شخصية حساسة (مثل الاسم الحقيقي أو رقم البطاقة) عبر هذا الموقع إلا إذا قدمتها بنفسك طوعاً عند التواصل معنا.</p><p>قد تُستخدم ملفات تعريف الارتباط (Cookies) أو التخزين المحلي (Local Storage) لتشغيل الموقع وحفظ تفضيلاتك وموافقتك على الشروط.</p><p>روابط خارجية (مثل فيسبوك أو يوتيوب أو روابط التحميل) تخضع لسياسات الجهات المالكة لها، ولسنا مسؤولين عن محتواها.</p><p>باستخدامك للموقع فإنك توافق على هذه السياسة. يمكنك التواصل معنا عبر قنوات الدعم المتاحة في الموقع لأي استفسار يتعلق بالخصوصية.</p></div></div>'+'<div class="consent-section"><h4>الشروط والأحكام</h4><div class="consent-scroll"><p>باستخدامك لهذا الموقع وخدماته، فإنك توافق على الالتزام بالشروط التالية.</p><p><strong>1. طبيعة الخدمة:</strong> الموقع يقدم منتجات رقمية ومحتوى وتحميلاً لبرمجيات/محركات حسب ما هو معروض. بعض المنتجات مجانية وبعضها مدفوع.</p><p><strong>2. التفعيل:</strong> تفعيل المنتجات المدفوعة يتم عبر معرّف الجهاز. التفعيل شخصي وغير قابل للتحويل إلا بقرار من إدارة الموقع.</p><p><strong>3. الاستخدام المقبول:</strong> يُحظر إساءة استخدام الموقع، أو محاولة اختراقه، أو إعادة بيع المنتجات دون إذن، أو أي نشاط يخالف القانون المعمول به.</p><p><strong>4. إخلاء المسؤولية:</strong> نبذل جهداً لتقديم خدمة مستقرة، لكن لا نضمن خلو الموقع من الأعطال أو انقطاع الخدمة. استخدامك للمحتوى والمنتجات على مسؤوليتك.</p><p><strong>5. التعديلات:</strong> يحق لإدارة الموقع تعديل هذه الشروط أو السياسة أو المحتوى في أي وقت، ويُعد استمرار الاستخدام موافقة على التحديثات.</p><p><strong>6. التواصل:</strong> لأي شكاوى أو استفسارات استخدم قنوات الدعم المعروضة في الموقع.</p></div></div>'+
+    '<div class="consent-section"><h4>الفيديو التعريفي</h4>'+videoBlock+'</div>'+
+    '<div class="consent-checks">'+
+      '<label'+labClass+'><input type="checkbox" id="ckPolicy"'+dis+'> أقر بأنني اطلعت على <strong>سياسة الخصوصية</strong> وأوافق عليها</label>'+
+      '<label'+labClass+'><input type="checkbox" id="ckTerms"'+dis+'> أقر بأنني اطلعت على <strong>الشروط والأحكام</strong> وأوافق عليها</label>'+
+      '<label'+labClass+'><input type="checkbox" id="ckVideo"'+dis+'> أقر بمعرفتي بوجود <strong>الفيديو التعريفي للموقع</strong></label>'+
+    '</div>';
+}
+function ensureConsentUI(){
+  if(document.getElementById('consentOverlay')) return;
+  var ov=document.createElement('div'); ov.id='consentOverlay'; ov.className='consent-overlay';
+  ov.innerHTML='<div class="consent-card" role="dialog" aria-modal="true">'+
+    '<header><span id="consentTitle">مرحباً بك</span><span></span></header>'+
+    '<div class="consent-body" id="consentBody"></div>'+
+    '<div class="consent-footer" id="consentFooter"></div></div>';
+  document.body.appendChild(ov);
+}
+function updateConfirmState(){
+  var b=document.getElementById('consentConfirm');
+  if(!b) return;
+  var a=document.getElementById('ckPolicy');
+  var t=document.getElementById('ckTerms');
+  var v=document.getElementById('ckVideo');
+  var ok=a&&t&&v&&a.checked&&t.checked&&v.checked;
+  b.classList.toggle('ready', !!ok);
+}
+function openConsent(readonly){
+  ensureConsentUI();
+  var ov=document.getElementById('consentOverlay');
+  document.getElementById('consentTitle').textContent = readonly ? 'السياسة والشروط' : 'مرحباً بك — يرجى الموافقة للمتابعة';
+  document.getElementById('consentBody').innerHTML = buildConsentHTML(!!readonly);
+  var foot=document.getElementById('consentFooter');
+  if(readonly){
+    foot.innerHTML='<button type="button" class="btn-confirm ready" id="consentCloseBtn" style="opacity:1;pointer-events:auto">إغلاق</button>';
+    document.getElementById('consentCloseBtn').onclick=function(){ ov.classList.remove('open'); };
+  } else {
+    foot.innerHTML='<button type="button" class="btn-confirm" id="consentConfirm">تأكيد والمتابعة</button>';
+    ['ckPolicy','ckTerms','ckVideo'].forEach(function(id){
+      var el=document.getElementById(id); if(el) el.addEventListener('change', updateConfirmState);
+    });
+    document.getElementById('consentConfirm').onclick=function(){
+      if(!this.classList.contains('ready')) return;
+      try{ localStorage.setItem('misran_consent_v1','1'); }catch(e){}
+      ov.classList.remove('open');
+    };
+    updateConfirmState();
+  }
+  ov.classList.add('open');
+}
+function maybeShowFirstConsent(){
+  try{
+    if(localStorage.getItem('misran_consent_v1')==='1') return;
+  }catch(e){}
+  openConsent(false);
+}
+function ensureSettingsGear(){
+  if(document.getElementById('settingsGear')) return;
+  var g=document.createElement('button');
+  g.id='settingsGear'; g.className='settings-gear'; g.type='button'; g.title='السياسة والشروط';
+  g.innerHTML='<i class="fas fa-cog"></i>';
+  g.onclick=function(){ openConsent(true); };
+  document.body.appendChild(g);
+}
+
 function initChrome(){
   applyBrand(); markNav(); wireNav();
+  ensureSettingsGear(); maybeShowFirstConsent();
   var tg=document.getElementById('navToggle');
   if(tg) tg.onclick=function(){document.getElementById('navLinks').classList.toggle('open');setTimeout(markNav,40);};
   window.addEventListener('resize',markNav);
+  setTimeout(markNav,50);
+  setTimeout(markNav,300);
+  setTimeout(markNav,800);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){markNav();});
   
 }
 function paginate(list, page, per){
