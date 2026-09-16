@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>محرك مصران</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<header class="nav-wrap"><nav class="nav-pill" id="mainNav"><span class="nav-indicator" id="navIndicator"></span>
+<a class="nav-pill-brand" href="index.html" data-brand-logo><span data-brand>محرك مصران</span></a>
+<div class="nav-pill-links" id="navLinks">
+<a class="nav-pill-link" href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+<a class="nav-pill-link" href="products.html"><i class="fas fa-store"></i> المتجر</a>
+<a class="nav-pill-link" href="engine.html"><i class="fas fa-download"></i> تحميل المحرك</a>
+<a class="nav-pill-link" href="content.html"><i class="fas fa-play-circle"></i> المحتوى</a>
+<a class="nav-pill-link" href="support.html"><i class="fas fa-headset"></i> الدعم</a>
+</div>
+<button type="button" class="nav-pill-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+</nav></header>
+<main class="page-fade">
+<section class="hero"><div class="container"><div class="row align-items-center">
+<div class="col-lg-7 hero-content">
+<h1><span id="heroTitle">محرك مصران</span><br><span id="heroSubtitle" style="font-weight:700;opacity:.95">إبداع ذهبي بمعايير فرعونية</span></h1>
+<p id="heroText">منصة مصرية فاخرة للمنتجات الرقمية والمحتوى.</p>
+<div class="d-flex flex-wrap gap-2">
+<a href="products.html" class="btn btn-light btn-hero" id="btnProducts" >المتجر</a>
+<a href="content.html" class="btn btn-outline-light-custom btn-hero" id="btnContent">المحتوى</a>
+<a href="engine.html" class="btn btn-outline-light-custom btn-hero" id="btnEngine">تحميل المحرك</a>
+</div></div>
+<div class="col-lg-5 d-none d-lg-block position-relative" style="height:260px">
+<div class="floating-card"><i class="fas fa-box-open text-white fs-3"></i><div class="mt-2 text-white fw-bold" id="card1Title">منتجات</div></div>
+<div class="floating-card"><i class="fas fa-play-circle text-white fs-3"></i><div class="mt-2 text-white fw-bold" id="card2Title">محتوى</div></div>
+<div class="floating-card"><i class="fas fa-shield-alt text-white fs-3"></i><div class="mt-2 text-white fw-bold" id="card3Title">موثوق</div></div>
+</div></div></div></section>
+<section class="section bg-white"><div class="container text-center">
+<h2 class="section-title" id="productsSectionTitle">أحدث المنتجات</h2>
+<div class="row g-3" id="homeProducts"></div>
+<a href="products.html" class="btn btn-primary-custom text-white mt-3" >عرض المتجر</a>
+</div></section>
+</main>
+<footer class="bg-dark text-white py-3 mt-3"><div class="container text-center text-white-50 small"><span data-phone></span> · <span data-brand>محرك مصران</span></div></footer>
+
+<!-- call fab removed; use float phone -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script id="SITE_DATA_BLOCK">
+window.SITE_DATA = {
+  "version": 3,
+  "updatedAt": null,
+  "site": {
+    "name": "محرك مصران",
+    "brand": "محرك مصران",
+    "logoUrl": "",
+    "supportPhone": "",
+    "floatButtons": {"phone":"","youtube":"","facebook":"","intro":"","custom":[]},
+    "paymentText": "",
+    "engine": {
+      "name": "محرك مصران",
+      "description": "",
+      "downloadUrl": "",
+      "version": "",
+      "thumbUrl": ""
+    },
+    "news": [],
+    "home": {
+      "heroTitle": "محرك مصران",
+      "heroSubtitle": "إبداع ذهبي بمعايير فرعونية",
+      "heroText": "منصة مصرية فاخرة للمنتجات الرقمية والمحتوى.",
+      "btnProducts": "تصفح المنتجات",
+      "btnContent": "المحتوى",
+      "btnEngine": "تحميل المحرك",
+      "productsSectionTitle": "أحدث المنتجات",
+      "card1Title": "منتجات",
+      "card2Title": "محتوى",
+      "card3Title": "موثوق"
+    },
+    "about": {
+      "title": "لماذا محرك مصران؟",
+      "subtitle": "منتجات · محتوى · محرك · دعم",
+      "imageUrl": "",
+      "description": "منصة مصرية للمنتجات الرقمية والمحتوى.",
+      "f1Title": "منتجات",
+      "f1Text": "مجاني ومدفوع.",
+      "f2Title": "محتوى",
+      "f2Text": "فيسبوك ويوتيوب.",
+      "f3Title": "المحرك",
+      "f3Text": "تحميل مباشر."
+    }
+  },
+  "products": [],
+  "content": {
+    "facebook": [],
+    "youtube": []
+  },
+  "playlists": [],
+  "activations": [],
+  "entitlements": {},
+  "paymentText": "",
+  "site_float_placeholder": true,
+  "storeFilters": []
+};
+</script>
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function driveDl(u){if(!u)return'';var m=String(u).match(/\/file\/d\/([\w-]+)/)||String(u).match(/[?&]id=([\w-]+)/);return m?'https://drive.google.com/uc?export=download&id='+m[1]:u;}
+function driveView(u){if(!u)return'';var m=String(u).match(/\/file\/d\/([\w-]+)/)||String(u).match(/[?&]id=([\w-]+)/);return m?'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w800':u;}
+function site(){return (window.SITE_DATA&&SITE_DATA.site)||{};}
+function q(n){return new URLSearchParams(location.search).get(n);}
+function findById(id){
+  var d=window.SITE_DATA||{},x;
+  x=(d.products||[]).find(function(p){return p.id===id;});if(x)return{type:'product',item:x};
+  x=((d.content||{}).facebook||[]).find(function(p){return p.id===id;});if(x)return{type:'facebook',item:x};
+  x=((d.content||{}).youtube||[]).find(function(p){return p.id===id;});if(x)return{type:'youtube',item:x};
+  x=(d.playlists||[]).find(function(p){return p.id===id;});if(x)return{type:'playlist',item:x};
+  return null;
+}
+function linkify(text){
+  return esc(text||'').replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+function storeName(){ var s=site(); return s.name||s.brand||'محرك مصران'; }
+function storeLabel(){ return 'المتجر'; }
+function setFavicon(url){
+  if(!url) return;
+  var href=driveView(url);
+  var link=document.querySelector("link[rel='icon']")||document.createElement('link');
+  link.rel='icon'; link.href=href; if(!link.parentNode) document.head.appendChild(link);
+}
+function ensureCurtain(){
+  if(document.getElementById('pageCurtain')) return;
+  var el=document.createElement('div'); el.id='pageCurtain'; el.className='page-curtain';
+  el.innerHTML='<div class="page-curtain-panel"></div><div class="page-curtain-inner"><div id="curtainLogoWrap"></div><div class="page-curtain-name" id="curtainName"></div><div class="page-curtain-line"></div><div class="page-curtain-sub">جاري الانتقال</div></div>';
+  document.body.appendChild(el);
+}
+function playCurtain(then){
+  ensureCurtain(); var s=site(), el=document.getElementById('pageCurtain');
+  document.getElementById('curtainName').textContent=storeName();
+  var lw=document.getElementById('curtainLogoWrap');
+  if(s.logoUrl) lw.innerHTML='<img class="page-curtain-logo" src="'+esc(driveView(s.logoUrl))+'" alt="">';
+  else lw.innerHTML='<i class="fas fa-ankh" style="font-size:2.2rem;color:#e8c547;margin-bottom:.75rem;display:block"></i>';
+  el.classList.remove('out'); el.classList.add('on');
+  setTimeout(function(){ if(then) then(); setTimeout(function(){ el.classList.add('out'); setTimeout(function(){ el.classList.remove('on','out'); },650); },250); },650);
+}
+function navigateTo(href){
+  var ind=document.getElementById('navIndicator');
+  if(ind){ try{ sessionStorage.setItem('navInd', ind.style.left+'|'+ind.style.width); }catch(e){} }
+  playCurtain(function(){ location.href=href; });
+}
+function glassModal(title, html){
+  var bd=document.getElementById('glassBd');
+  if(!bd){
+    bd=document.createElement('div'); bd.id='glassBd'; bd.className='glass-modal-backdrop';
+    bd.innerHTML='<div class="glass-modal" role="dialog"><div class="d-flex justify-content-between align-items-start gap-2 mb-2"><h3 id="glassTitle"></h3><button type="button" class="btn btn-sm btn-outline-secondary" id="glassClose">إغلاق</button></div><div id="glassBody"></div></div>';
+    document.body.appendChild(bd);
+    bd.addEventListener('click',function(e){ if(e.target===bd) bd.classList.remove('open'); });
+    document.getElementById('glassClose').onclick=function(){ bd.classList.remove('open'); };
+  }
+  document.getElementById('glassTitle').textContent=title||'';
+  document.getElementById('glassBody').innerHTML=html||'';
+  bd.classList.add('open');
+}
+
+
+function copyText(t, btn){
+  t=String(t||'');
+  function ok(){ if(btn){ btn.classList.add('ok'); btn.innerHTML='<i class="fas fa-check"></i>'; setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML='<i class="fas fa-copy"></i>'; },1200);} }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(ok).catch(function(){ fallback(); });
+  } else fallback();
+  function fallback(){
+    var a=document.createElement('textarea'); a.value=t; document.body.appendChild(a); a.select();
+    try{ document.execCommand('copy'); ok(); }catch(e){}
+    document.body.removeChild(a);
+  }
+}
+function idCopyHtml(id){
+  return '<span class="id-with-copy"><code class="mono" style="direction:ltr">'+esc(id)+'</code> <button type="button" class="btn-copy-id" title="نسخ" data-copy="'+esc(id)+'"><i class="fas fa-copy"></i></button></span>';
+}
+function wireCopy(root){
+  (root||document).querySelectorAll('[data-copy]').forEach(function(b){
+    if(b._copyBound) return; b._copyBound=true;
+    b.onclick=function(e){ e.preventDefault(); e.stopPropagation(); copyText(b.getAttribute('data-copy'), b); };
+  });
+}
+
+function deviceId(){
+  var k='misran_device_id', ko='misran_device_id_original';
+  try{
+    var v=localStorage.getItem(k);
+    if(v&&v.length>10) return v;
+    var id='u_'+Array.from(crypto.getRandomValues(new Uint8Array(16))).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+    localStorage.setItem(k,id);
+    if(!localStorage.getItem(ko)) localStorage.setItem(ko,id);
+    return id;
+  }catch(e){
+    return 'u_tmp_'+Date.now().toString(36)+Math.random().toString(36).slice(2);
+  }
+}
+function userEntitlements(){
+  var d=window.SITE_DATA||{};
+  var map=d.entitlements||{};
+  return map[deviceId()]||[];
+}
+function userOwns(productId){
+  return userEntitlements().indexOf(productId)>=0;
+}
+
+function renderUserChip(){
+  var old=document.getElementById('userChip'); if(old) old.remove();
+  var id=deviceId();
+  var chip=document.createElement('div');
+  chip.id='userChip'; chip.className='user-chip';
+  chip.innerHTML='<div class="user-avatar"><i class="fas fa-user"></i></div>'+
+    '<button type="button" class="btn btn-outline-secondary btn-sm" id="btnShowId">عرض ID الحساب</button>'+
+    '<span id="idWrap" class="d-none id-with-copy"><span class="user-id" id="idText"></span>'+
+    '<button type="button" class="btn-copy-id" id="btnCopyId" title="نسخ"><i class="fas fa-copy"></i></button>'+
+    '<button type="button" class="btn btn-outline-secondary btn-sm" id="btnHideId">إخفاء</button></span>'+
+    '<span class="user-badge">منشئ</span>'+
+    '<button type="button" class="btn-copy-id" id="btnGear" title="إعدادات الحساب"><i class="fas fa-cog"></i></button>'+
+    '<button type="button" class="btn btn-outline-secondary btn-sm" id="btnMyProducts">منتجاتي</button>';
+  document.body.appendChild(chip);
+  document.getElementById('btnShowId').onclick=function(){
+    document.getElementById('idText').textContent=deviceId();
+    document.getElementById('idWrap').classList.remove('d-none');
+    document.getElementById('btnShowId').classList.add('d-none');
+    document.getElementById('btnCopyId').setAttribute('data-copy', deviceId());
+    wireCopy(chip);
+  };
+  document.getElementById('btnHideId').onclick=function(){
+    document.getElementById('idWrap').classList.add('d-none');
+    document.getElementById('btnShowId').classList.remove('d-none');
+  };
+  document.getElementById('btnCopyId').onclick=function(){ copyText(deviceId(), this); };
+  document.getElementById('btnGear').onclick=function(){
+    glassModal('إعدادات الحساب',
+      '<div class="glass-row"><div class="small text-muted mb-1">تسجيل الدخول بـ ID آخر</div>'+
+      '<input class="form-control mb-2" id="switchIdInput" placeholder="اكتب ID" style="direction:ltr">'+
+      '<button type="button" class="btn btn-warning btn-sm" id="btnSwitchId">تأكيد</button></div>'+
+      '<div class="glass-row mt-2"><button type="button" class="btn btn-outline-secondary btn-sm w-100" id="btnRestoreId">تفعيل ID الجهاز الأصلي</button></div>'
+    );
+    document.getElementById('btnSwitchId').onclick=function(){
+      var v=(document.getElementById('switchIdInput').value||'').trim();
+      if(!v){ toast('اكتب ID'); return; }
+      if(!isValidSiteId(v)){ toast('لا وجود لهذا الـ ID'); return; }
+      originalDeviceId();
+      setActiveDeviceId(v);
+      document.getElementById('glassBd').classList.remove('open');
+      toast('تم تغيير الحساب');
+      renderUserChip();
+    };
+    document.getElementById('btnRestoreId').onclick=function(){
+      var o=originalDeviceId();
+      setActiveDeviceId(o);
+      document.getElementById('glassBd').classList.remove('open');
+      toast('تم استعادة ID الجهاز الأصلي');
+      renderUserChip();
+    };
+  };
+  document.getElementById('btnMyProducts').onclick=function(){
+    var ids=userEntitlements();
+    var prods=(SITE_DATA.products||[]).filter(function(p){return ids.indexOf(p.id)>=0;});
+    if(!prods.length){ glassModal('منتجاتي','<div class="text-muted">لا توجد منتجات مفعّلة لهذا الحساب بعد</div>'); return; }
+    glassModal('منتجاتي', prods.map(function(p){
+      return '<div class="glass-row"><div class="fw-bold">'+esc(p.title)+'</div><div class="small mb-1">'+idCopyHtml(p.id)+'</div>'+
+        '<button type="button" class="btn btn-sm btn-primary-custom text-white" data-my="'+esc(p.id)+'">عرض المنتج</button></div>';
+    }).join(''));
+    wireCopy(document.getElementById('glassBd'));
+    document.querySelectorAll('[data-my]').forEach(function(b){
+      b.onclick=function(){
+        document.getElementById('glassBd').classList.remove('open');
+        if(typeof openProduct==='function') openProduct(b.getAttribute('data-my'));
+        else location.href='products.html?id='+encodeURIComponent(b.getAttribute('data-my'));
+      };
+    });
+  };
+}
+
+function originalDeviceId(){
+  var k='misran_device_id_original';
+  try{
+    var o=localStorage.getItem(k);
+    if(o) return o;
+    var cur=localStorage.getItem('misran_device_id');
+    if(cur){ localStorage.setItem(k,cur); return cur; }
+  }catch(e){}
+  return deviceId();
+}
+function isValidSiteId(id){
+  id=String(id||'').trim();
+  // algorithm: u_ + 32 hex from crypto random
+  if(/^u_[a-f0-9]{32}$/i.test(id)) return true;
+  // legacy shorter ids from older generator
+  if(/^u_[a-z0-9]{10,}$/i.test(id)) return true;
+  return false;
+}
+function setActiveDeviceId(id){
+  try{ localStorage.setItem('misran_device_id', id); }catch(e){}
+}
+function renderFloatButtons(){
+  var s=site(), fb=s.floatButtons||{};
+  var bl=document.getElementById('floatBL'); if(bl) bl.remove();
+  var br=document.getElementById('floatBR'); if(br) br.remove();
+  bl=document.createElement('div'); bl.id='floatBL'; bl.className='float-stack-bl';
+  if(fb.phone){ var a=document.createElement('a'); a.className='float-btn phone'; a.href='tel:'+String(fb.phone).replace(/\s/g,''); a.title='اتصال'; a.innerHTML='<i class="fas fa-phone-alt"></i>'; bl.appendChild(a); }
+  if(fb.youtube){ var a=document.createElement('a'); a.className='float-btn yt'; a.href=fb.youtube; a.target='_blank'; a.rel='noopener'; a.innerHTML='<i class="fab fa-youtube"></i>'; bl.appendChild(a); }
+  if(fb.facebook){ var a=document.createElement('a'); a.className='float-btn fb'; a.href=fb.facebook; a.target='_blank'; a.rel='noopener'; a.innerHTML='<i class="fab fa-facebook-f"></i>'; bl.appendChild(a); }
+  if(fb.intro){ var a=document.createElement('a'); a.className='float-btn'; a.href=fb.intro; a.target='_blank'; a.rel='noopener'; a.title='فيديو تعريفي'; a.innerHTML='<i class="fas fa-play"></i>'; bl.appendChild(a); }
+  document.body.appendChild(bl);
+  var customs=fb.custom||[];
+  if(customs.length){
+    br=document.createElement('div'); br.id='floatBR'; br.className='float-stack-br';
+    customs.forEach(function(c){
+      if(!c.url) return;
+      var a=document.createElement('a'); a.className='float-btn'; a.href=c.url; a.target='_blank'; a.rel='noopener';
+      if(c.imageUrl) a.innerHTML='<img src="'+esc(driveView(c.imageUrl))+'" alt="">';
+      else a.innerHTML='<i class="fas fa-link"></i>';
+      br.appendChild(a);
+    });
+    document.body.appendChild(br);
+  }
+}
+
+function applyBrand(){
+  var s=site(),name=storeName();
+  document.querySelectorAll('[data-brand]').forEach(function(el){el.textContent=name;});
+  document.querySelectorAll('[data-store-label]').forEach(function(el){el.textContent=storeLabel();});
+  if(s.logoUrl){
+    setFavicon(s.logoUrl);
+    var src=driveView(s.logoUrl);
+    document.querySelectorAll('[data-brand-logo]').forEach(function(el){
+      el.innerHTML='<img src="'+esc(src)+'" style="height:26px;border-radius:5px;object-fit:contain" alt=""> '+esc(name);
+    });
+  }
+  var phone=(s.supportPhone||'').trim();
+  document.querySelectorAll('[data-phone]').forEach(function(el){el.textContent=phone||'—';});
+  document.querySelectorAll('[data-tel]').forEach(function(el){el.href=phone?('tel:'+phone.replace(/\s/g,'')):'#';});
+  // news ribbon
+  var old=document.getElementById('newsRibbon'); if(old) old.remove();
+  var n=((s.news)||[]).find(function(x){return x.active!==false;});
+  if(n && n.text){
+    var bar=document.createElement('div'); bar.id='newsRibbon'; bar.className='news-ribbon';
+    bar.innerHTML=linkify(n.text);
+    document.body.insertBefore(bar, document.body.firstChild);
+  }
+}
+function markNav(){
+  var path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  document.querySelectorAll('.nav-pill-link').forEach(function(a){
+    var h=(a.getAttribute('href')||'').split('?')[0].toLowerCase();
+    a.classList.toggle('is-active', h===path || (path===''&&h==='index.html'));
+  });
+  var ind=document.getElementById('navIndicator'),nav=document.getElementById('mainNav');
+  var a=document.querySelector('.nav-pill-link.is-active');
+  if(!ind||!nav||!a){ if(ind) ind.style.width='0'; return; }
+  if(window.matchMedia('(max-width:900px)').matches){ ind.style.width='0'; return; }
+  var nr=nav.getBoundingClientRect(), r=a.getBoundingClientRect();
+  var pad=0;
+  ind.style.top='6px';
+  ind.style.height=(nr.height-12)+'px';
+  ind.style.left=Math.max(0,(r.left-nr.left-pad))+'px';
+  ind.style.width=Math.max(0,r.width+pad*2)+'px';
+}
+function wireNav(){
+  document.querySelectorAll('.nav-pill-link, .nav-pill-brand, a.btn-hero, a.btn-primary-custom').forEach(function(a){
+    var href=a.getAttribute('href')||'';
+    if(!href||href.indexOf('http')===0||href.charAt(0)==='#'||href.indexOf('mailto:')===0||href.indexOf('tel:')===0) return;
+    a.addEventListener('click',function(e){
+      var dest=href.split('?')[0].toLowerCase();
+      var cur=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+      if(dest===cur) return;
+      e.preventDefault(); navigateTo(href);
+    });
+  });
+}
+function initChrome(){
+  applyBrand(); renderUserChip(); renderFloatButtons(); renderFloatButtons(); markNav(); wireNav();
+  var tg=document.getElementById('navToggle');
+  if(tg) tg.onclick=function(){document.getElementById('navLinks').classList.toggle('open');setTimeout(markNav,40);};
+  window.addEventListener('resize',markNav);
+  
+}
+function paginate(list, page, per){
+  var total=Math.max(1, Math.ceil(list.length/per)||1);
+  page=Math.min(Math.max(1,page), total);
+  return {items:list.slice((page-1)*per, page*per), page:page, total:total};
+}
+function renderPager(el, page, total, onPage){
+  if(!el) return;
+  if(total<=1){el.innerHTML='';return;}
+  var html='<button type="button" '+(page<=1?'disabled':'')+' data-p="'+(page-1)+'">‹</button>';
+  for(var i=1;i<=total;i++) html+='<button type="button" class="'+(i===page?'active':'')+'" data-p="'+i+'">'+i+'</button>';
+  html+='<button type="button" '+(page>=total?'disabled':'')+' data-p="'+(page+1)+'">›</button>';
+  el.innerHTML=html;
+  el.querySelectorAll('button[data-p]').forEach(function(b){b.onclick=function(){if(!b.disabled) onPage(+b.getAttribute('data-p'));};});
+}
+document.addEventListener('DOMContentLoaded', function(){ initChrome(); });
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded',function(){
+  var h=(SITE_DATA.site&&SITE_DATA.site.home)||{};
+  function set(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v;}
+  set('heroTitle',h.heroTitle);set('heroSubtitle',h.heroSubtitle);set('heroText',h.heroText);
+  // btn products uses data-store-label unless custom text in home.btnProducts
+  if(h.btnProducts) document.getElementById('btnProducts').textContent=h.btnProducts;
+  set('btnContent',h.btnContent);set('btnEngine',h.btnEngine);
+  set('productsSectionTitle',h.productsSectionTitle);set('card1Title',h.card1Title);set('card2Title',h.card2Title);set('card3Title',h.card3Title);
+  var list=(SITE_DATA.products||[]).filter(function(p){return p.status!=='hidden';});
+  list=list.slice().sort(function(a,b){var ta=a.createdAt?Date.parse(a.createdAt):0,tb=b.createdAt?Date.parse(b.createdAt):0;return tb-ta;}).slice(0,6);
+  var box=document.getElementById('homeProducts');
+  if(!list.length){box.innerHTML='<div class="col-12 text-muted">لا منتجات بعد</div>';return;}
+  box.innerHTML=list.map(function(p){
+    var free=p.isFree||!p.price,th=p.thumbUrl?driveView(p.thumbUrl):'';
+    return '<div class="col-md-4"><a class="project-card d-block text-decoration-none h-100" href="products.html?id='+encodeURIComponent(p.id)+'">'+
+      '<div class="project-thumb bg-light d-flex align-items-center justify-content-center" style="'+(th?"background:url('"+th.replace(/'/g,"%27")+"') center/cover":'')+'">'+(th?'':'<i class="fas fa-box fa-2x text-muted"></i>')+'</div>'+
+      '<div class="project-body"><div class="project-title text-dark">'+esc(p.title)+'</div><div class="project-price '+(free?'free':'')+'">'+(free?'مجاني':p.price+' ج.م')+'</div></div></a></div>';
+  }).join('');
+});
+
+</script>
+</body></html>
